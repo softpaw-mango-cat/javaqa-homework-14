@@ -3,28 +3,35 @@ package ru.netology.game;
 import ru.netology.exceptions.AlreadyRegisteredException;
 import ru.netology.exceptions.NotRegisteredException;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
 
-    private ArrayList<Player> players = new ArrayList<>();
+    private Map<Integer, Player> players = new HashMap<>();
+    private int id = 0;
 
-    public ArrayList<Player> getPlayers() {
+    public Map<Integer, Player> getPlayers() {
         return players;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void register(Player newPlayer) {
-        for (Player player : players) {
-            if (player.equals(newPlayer)) {
-                throw new AlreadyRegisteredException("Такой игрок уже зарегистрирован");
-            }
+
+        if (players.containsValue(newPlayer)) {
+            throw new AlreadyRegisteredException("Такой игрок уже зарегистрирован");
         }
-        players.add(newPlayer);
+
+        players.put(id++, newPlayer);
         System.out.println("Новый игрок зарегистрирован: " + newPlayer.toString());
     }
 
     public Player findByName(String name) {
-        for (Player player : players) {
+
+        for (Player player : players.values()) {
             if (player.getName().equals(name)) {
                 return player;
             }

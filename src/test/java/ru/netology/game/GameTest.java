@@ -11,13 +11,12 @@ public class GameTest {
     Player player1;
     Player player2;
     Player player3;
-    // Game game;
 
     @BeforeEach
     public void setUpGame() {
-        player1 = new Player(1, "Teferi", 20);
-        player2 = new Player(2, "Jace", 17);
-        player3 = new Player(3, "Chandra", 21);
+        player1 = new Player("Teferi", 20);
+        player2 = new Player("Jace", 17);
+        player3 = new Player("Chandra", 21);
     }
 
     @Test
@@ -25,7 +24,7 @@ public class GameTest {
         Game game = new Game();
         game.register(player1);
 
-        Assertions.assertTrue(game.getPlayers().contains(player1));
+        Assertions.assertTrue(game.getPlayers().containsValue(player1));
     }
 
     @Test
@@ -46,7 +45,7 @@ public class GameTest {
 
         Player result = game.findByName("Jace");
 
-        Assertions.assertTrue(game.getPlayers().contains(result));
+        Assertions.assertTrue(game.getPlayers().containsValue(result));
     }
 
     @Test

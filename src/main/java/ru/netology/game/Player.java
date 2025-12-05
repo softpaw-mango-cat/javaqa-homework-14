@@ -3,22 +3,12 @@ package ru.netology.game;
 import java.util.Objects;
 
 public class Player {
-    private int id;
     private String name;
     private int strength;
 
-    public Player(int id, String name, int strength) {
-        this.id = id;
+    public Player(String name, int strength) {
         this.name = name;
         this.strength = strength;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -41,19 +31,18 @@ public class Player {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return id == player.id && strength == player.strength && Objects.equals(name, player.name);
+        return strength == player.strength && Objects.equals(name, player.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, strength);
+        return Objects.hash(name, strength);
     }
 
     @Override
     public String toString() {
         return "Player{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", strength=" + strength +
                 '}';
     }
