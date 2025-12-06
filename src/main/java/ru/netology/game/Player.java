@@ -3,20 +3,20 @@ package ru.netology.game;
 import java.util.Objects;
 
 public class Player {
-    private String name;
+    private int id;
     private int strength;
 
-    public Player(String name, int strength) {
-        this.name = name;
+    public Player(int id, int strength) {
+        this.id = id;
         this.strength = strength;
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getStrength() {
@@ -31,19 +31,20 @@ public class Player {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return strength == player.strength && Objects.equals(name, player.name);
+        return id == player.id && strength == player.strength;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, strength);
+        return Objects.hash(id, strength);
     }
 
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + name + '\'' +
+                "id=" + id +
                 ", strength=" + strength +
                 '}';
     }
 }
+

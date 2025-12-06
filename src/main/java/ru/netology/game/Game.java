@@ -8,35 +8,31 @@ import java.util.Map;
 
 public class Game {
 
-    private Map<Integer, Player> players = new HashMap<>();
-    private int id = 0;
+    private Map<String, Player> players = new HashMap<>();
 
-    public Map<Integer, Player> getPlayers() {
+    public Map<String, Player> getPlayers() {
         return players;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void register(Player newPlayer) {
+    public void register(String name, Player newPlayer) {
 
         if (players.containsValue(newPlayer)) {
             throw new AlreadyRegisteredException("Такой игрок уже зарегистрирован");
         }
 
-        players.put(id++, newPlayer);
-        System.out.println("Новый игрок зарегистрирован: " + newPlayer.toString());
+        players.put(name, newPlayer);
+
+        System.out.println("Новый игрок зарегистрирован: " + name);
     }
 
     public Player findByName(String name) {
 
-        for (Player player : players.values()) {
-            if (player.getName().equals(name)) {
-                return player;
-            }
+        if (players.containsKey(name)) {
+            return players.get(name);
+        } else {
+            throw new NotRegisteredException("Этот игрок не зарегистрирован в системе");
         }
-        throw new NotRegisteredException("Этот игрок не зарегистрирован в системе");
+
     }
 
     public int round(String playerName1, String playerName2) {
